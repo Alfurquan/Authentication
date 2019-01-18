@@ -48,7 +48,7 @@ app.post("/register",function(req,res){
             res.redirect("/register");
         }else{
             passport.authenticate("local")(req,res,function(){
-               res.redirect("/secret"); 
+              res.send(user);
             });
         }
     })
@@ -61,11 +61,8 @@ app.get("/login",function(req, res) {
 
 //logging in
 
-app.post("/login",passport.authenticate("local",{
-    successRedirect:"/secret",
-    failureRedirect:"/login"
-}),function(req,res){
-    
+app.post("/login",passport.authenticate("local"),function(req,res){
+    res.send("true");
 });
 //logout
 
